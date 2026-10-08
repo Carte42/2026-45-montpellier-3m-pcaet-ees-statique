@@ -17,3 +17,7 @@ pipeline/travail/
 *.docx
 *.xlsx
 *.pdf
+
+# Exception : les planches imprimables produites par le pipeline, qui sont une
+# sortie du demonstrateur et non une piece d'offre
+!public/planches/*.pdf
