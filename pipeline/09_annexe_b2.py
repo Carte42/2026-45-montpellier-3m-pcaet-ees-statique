@@ -44,9 +44,12 @@ sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 RACINE = Path(__file__).resolve().parent.parent
 DATA = RACINE / "public" / "data"
 SORTIE = RACINE / "public" / "planches" / "B2_jeux_de_donnees.pdf"
-COPIE = Path(
-    r"C:\Users\Client\Downloads\Montpellier Plan Climat Energie Territorial"
-    r"\1. Preparation reponse\1. Offre\Annexes\B2_jeux_de_donnees.pdf"
+
+# Destination facultative d'une copie, pour déposer la pièce directement dans le
+# dossier de réponse : `python 09_annexe_b2.py --vers "<chemin du dossier>"`.
+COPIE = (
+    Path(sys.argv[sys.argv.index("--vers") + 1]) / SORTIE.name
+    if "--vers" in sys.argv else None
 )
 
 ENCRE = colors.HexColor("#1a1a1a")
@@ -340,8 +343,9 @@ def main() -> None:
     # 3. Fiches de métadonnées
     histoire.append(Paragraph("3 — Fiches de métadonnées, une par source", H2))
     histoire.append(Paragraph(
-        "Chaque jeu de données est référencé avec son producteur, son millésime, sa licence et ses "
-        "réserves de lecture. Les fiches sont reproduites ici telles que le démonstrateur les publie.", P))
+        "Chaque jeu de données est référencé avec son producteur, son millésime ou sa date "
+        "d'interrogation, sa licence et ses réserves de lecture. Les fiches sont reproduites ici "
+        "telles que le démonstrateur les publie.", P))
     for nom, titre in FICHES:
         d = json.loads((DATA / nom).read_text(encoding="utf-8"))
         lignes = []
@@ -427,9 +431,10 @@ def main() -> None:
     doc.build(histoire)
     print(f"\n  {SORTIE.name} — {ko(SORTIE)}, {doc.page} pages")
 
-    COPIE.parent.mkdir(parents=True, exist_ok=True)
-    COPIE.write_bytes(SORTIE.read_bytes())
-    print(f"  copie jointe au pli : {COPIE}")
+    if COPIE is not None:
+        COPIE.parent.mkdir(parents=True, exist_ok=True)
+        COPIE.write_bytes(SORTIE.read_bytes())
+        print(f"  copie déposée : {COPIE}")
 
 
 if __name__ == "__main__":

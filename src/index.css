@@ -180,6 +180,20 @@ button { font: inherit; color: inherit; }
 .panneau-corps dt { color: var(--muted); }
 .panneau-corps dd { color: var(--text); line-height: 1.5; word-break: break-word; }
 
+/* Inventaire des fichiers servis, au bas du volet « sources ». */
+.inventaire { margin-top: 12px; }
+.inventaire h4 { font-size: 12px; color: var(--muted); margin-bottom: 5px; font-weight: 600; }
+.inventaire ul { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+.inventaire li { font-size: 11.5px; line-height: 1.45; color: var(--muted); }
+.inventaire a {
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: 11px;
+  border-bottom: 1px solid var(--border);
+}
+.inventaire a:hover { color: var(--accent); border-color: var(--accent); }
+.inventaire .poids { color: var(--muted); opacity: .7; white-space: nowrap; }
+
 /* ── Onboarding ───────────────────────────────────────────────── */
 .ob-overlay {
   position: fixed;

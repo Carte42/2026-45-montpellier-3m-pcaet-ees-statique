@@ -30,7 +30,9 @@ Service testé : `https://data.geopf.fr/wms-r/wms`, requêtes GetMap sur une emp
 
 **C'est le résultat le plus favorable de la vérification.** L'occupation du sol à grande échelle existe en **trois millésimes** sur ce territoire, et l'Institut national de l'information géographique et forestière publie en plus des couches d'artificialisation dédiées. Le démonstrateur peut donc présenter une **évolution mesurée entre deux dates officielles**, et non un état figé — ce qui est exactement l'argument d'analyse multi-temporelle du mémoire.
 
-**Réserve à lever avant de s'appuyer sur le millésime 2024-2026.** La documentation de l'Institut annonçait une diffusion du troisième bloc pour l'Hérault au quatrième trimestre 2026, période dans laquelle nous entrons. Le service renvoie bien de la donnée, mais cela ne garantit pas que le département soit couvert plutôt que servi par une couche nationale partiellement renseignée. **Le démonstrateur se construit donc sur les millésimes 2017-2020 et 2021-2023**, qui sont certains, et n'ajoute le troisième que si le contrôle sur la donnée vectorielle le confirme.
+**Réserve à lever avant de s'appuyer sur le millésime 2024-2026.** La documentation de l'Institut annonçait une diffusion du troisième bloc pour l'Hérault au quatrième trimestre 2026, période dans laquelle nous entrons. Le service renvoie bien de la donnée, mais cela ne garantit pas que le département soit couvert plutôt que servi par une couche nationale partiellement renseignée. **Le démonstrateur se construit donc sur les deux millésimes certains**, et n'ajoute le troisième que si le contrôle sur la donnée vectorielle le confirme.
+
+> **Levé le 8 octobre 2026.** Le contrôle sur la donnée vectorielle a été conduit : les couches de différence du produit Artificialisation 2.0 couvrent l'Hérault pour **2018-2021** (publiée le 16 septembre 2025) et **2021-2024** (publiée le 27 août 2026). Ce sont ces deux périodes que le démonstrateur mesure, et non les millésimes de couverture repérés ci-dessus au service de tuiles vectorielles. Le troisième bloc n'a pas été retenu.
 
 Pour le calcul, la donnée vectorielle se télécharge par département au format GeoPackage depuis `geoservices.ign.fr/ocsge`. Le service web sert à l'affichage, le fichier vectoriel au calcul.
 
@@ -39,6 +41,8 @@ Pour le calcul, la donnée vectorielle se télécharge par département au forma
 Service testé : catalogue STAC `earth-search.aws.element84.com/v1`, collection `sentinel-2-l2a`, sans authentification.
 
 Emprise 3,70-4,05 E / 43,50-43,72 N, du 1ᵉʳ juin au 15 septembre 2026, couverture nuageuse inférieure à 10 % : **13 scènes disponibles**, dont une à 0 % de nuages le 13 septembre 2026.
+
+> **Scène finalement retenue :** `S2A_31TEJ_20260806_1_L2A`, du **6 août 2026**, à 0,003 % de couverture nuageuse. Elle a été préférée à celle du 13 septembre parce qu'une prise de vue d'août rend compte de l'état du couvert végétal au cœur de la saison sèche, période sur laquelle porte l'enjeu d'exposition aux vagues de chaleur.
 
 Bandes présentes sur chaque scène : `red`, `green`, `blue`, `nir`, `nir08`, `swir16`, `scl`, `visual`. Les bandes rouge et proche infrarouge permettent le calcul de l'indice de végétation ; la bande `scl` fournit le masque de classification pour écarter nuages et ombres.
 
@@ -64,4 +68,4 @@ Les périmètres Natura 2000 ne figurent pas au service web de l'Institut nation
 
 ## Conclusion
 
-Les trois thématiques retenues sont réalisables sur données ouvertes, et aucune ne dépend d'une donnée fournie par la Métropole. Le verrou que je redoutais — l'absence de couverture de l'occupation du sol à grande échelle sur l'Hérault — est levé, et avec une marge : deux millésimes certains et un troisième probable.
+Les trois thématiques retenues sont réalisables sur données ouvertes, et aucune ne dépend d'une donnée fournie par la Métropole. Le verrou que je redoutais — l'absence de couverture de l'occupation du sol à grande échelle sur l'Hérault — est levé, et avec une marge : deux périodes d'évolution certaines et un troisième bloc, non retenu.

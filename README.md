@@ -54,7 +54,7 @@ tailles de réponse et les réserves.
 
 | Thématique | Source | Accès |
 |---|---|---|
-| Artificialisation | Occupation du sol à grande échelle, IGN, millésimes 2017-2020 et 2021-2023 | GeoPackage départemental à télécharger — pas de service web vectoriel |
+| Artificialisation | Occupation du sol à grande échelle — couches d'artificialisation 2.0, IGN, différences 2018-2021 et 2021-2024 | GeoPackage départemental à télécharger — pas de service web vectoriel |
 | Couvert végétal | Sentinel-2 niveau 2A, programme Copernicus | Catalogue STAC, sans authentification |
 | Risques naturels | Géorisques — inventaire GASPAR, territoires à risque important d'inondation, zonage sismique | API, interrogation par commune |
 | Fonds de plan | IGN | Service web `data.geopf.fr/wms-r/wms` |

@@ -57,6 +57,9 @@ const nb = (v, d = 1) =>
     ? v.toLocaleString('fr-FR', { minimumFractionDigits: d, maximumFractionDigits: d })
     : '—'
 
+// Poids d'un fichier, en kilo-octets, pour l'inventaire du volet « sources ».
+const ko = (octets) => `${Math.max(1, Math.round(octets / 1024)).toLocaleString('fr-FR')} Ko`
+
 export default function App() {
   const [territoire, setTerritoire] = useState(null)
   const [synthese, setSynthese] = useState(null)
@@ -67,6 +70,7 @@ export default function App() {
   const [cleIndic, setCleIndic] = useState(INDICATEURS[0].cle)
   const [survol, setSurvol] = useState(null)
   const [sourcesOuvertes, setSourcesOuvertes] = useState(false)
+  const [inventaire, setInventaire] = useState(null)
 
   useEffect(() => {
     const b = import.meta.env.BASE_URL
@@ -89,6 +93,13 @@ export default function App() {
         setMetas({ perimetre: mp, artificialisation: ma, vegetation: mv, risques: mr, fonddeplan: mf })
       })
       .catch((e) => console.error('Chargement des données', e))
+
+    // L'inventaire des fichiers servis est produit par 10_publier_traitements.py
+    // en parcourant le dossier publié : il ne peut annoncer que ce qui existe.
+    fetch(`${b}data/fichiers.json`)
+      .then((r) => r.json())
+      .then(setInventaire)
+      .catch((e) => console.error('Chargement de l’inventaire', e))
   }, [])
 
   const indic = useMemo(
@@ -415,6 +426,35 @@ export default function App() {
                   </dl>
                 </section>
               ))}
+              {inventaire && (
+                <section>
+                  <h3>Fichiers publiés</h3>
+                  <p className="mention">
+                    Chacun est téléchargeable directement. L&apos;archive des
+                    traitements contient les scripts qui produisent tout le reste.
+                  </p>
+                  {Object.entries(inventaire.familles).map(([cle, titre]) => {
+                    const lot = inventaire.fichiers.filter((f) => f.famille === cle)
+                    if (!lot.length) return null
+                    return (
+                      <div key={cle} className="inventaire">
+                        <h4>{titre}</h4>
+                        <ul>
+                          {lot.map((f) => (
+                            <li key={f.chemin}>
+                              <a href={`${import.meta.env.BASE_URL}${f.chemin}`} download>
+                                {f.nom}
+                              </a>
+                              <span> — {f.legende}</span>
+                              <span className="poids"> {ko(f.octets)}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )
+                  })}
+                </section>
+              )}
               <p className="mention">
                 Toutes les données employées sont ouvertes et accessibles sans
                 authentification. Aucune donnée fournie par Montpellier

@@ -1,0 +1,149 @@
+{
+  "familles": {
+    "donnees": "Données et traitements",
+    "fiches": "Fiches de métadonnées",
+    "documents": "Documents imprimables"
+  },
+  "fichiers": [
+    {
+      "chemin": "data/artificialisation.geojson",
+      "nom": "artificialisation.geojson",
+      "legende": "Polygones d'évolution de l'occupation du sol",
+      "famille": "donnees",
+      "octets": 301118
+    },
+    {
+      "chemin": "data/artificialisation_flux.json",
+      "nom": "artificialisation_flux.json",
+      "legende": "Flux de couverture du sol mesurés",
+      "famille": "donnees",
+      "octets": 2278
+    },
+    {
+      "chemin": "data/communes_3m.geojson",
+      "nom": "communes_3m.geojson",
+      "legende": "Contours communaux bruts, avant calcul",
+      "famille": "donnees",
+      "octets": 245316
+    },
+    {
+      "chemin": "data/flux.csv",
+      "nom": "flux.csv",
+      "legende": "Les mêmes flux en tableur",
+      "famille": "donnees",
+      "octets": 1024
+    },
+    {
+      "chemin": "data/matrice.csv",
+      "nom": "matrice.csv",
+      "legende": "La même matrice en tableur",
+      "famille": "donnees",
+      "octets": 3452
+    },
+    {
+      "chemin": "data/matrice.json",
+      "nom": "matrice.json",
+      "legende": "Matrice d'incidences, avec son échelle d'intensité et ses attributs",
+      "famille": "donnees",
+      "octets": 7532
+    },
+    {
+      "chemin": "data/risques.geojson",
+      "nom": "risques.geojson",
+      "legende": "Risques recensés par commune",
+      "famille": "donnees",
+      "octets": 273683
+    },
+    {
+      "chemin": "data/synthese.json",
+      "nom": "synthese.json",
+      "legende": "Indicateurs de synthèse à l'échelle du territoire",
+      "famille": "donnees",
+      "octets": 1007
+    },
+    {
+      "chemin": "data/territoire.csv",
+      "nom": "territoire.csv",
+      "legende": "Les mêmes indicateurs en tableur, sans géométrie",
+      "famille": "donnees",
+      "octets": 6729
+    },
+    {
+      "chemin": "data/territoire.geojson",
+      "nom": "territoire.geojson",
+      "legende": "Couche communale — 31 entités, 22 champs",
+      "famille": "donnees",
+      "octets": 107511
+    },
+    {
+      "chemin": "data/territoire_shp.zip",
+      "nom": "territoire_shp.zip",
+      "legende": "La même couche au format Shapefile, avec son dictionnaire de champs",
+      "famille": "donnees",
+      "octets": 42194
+    },
+    {
+      "chemin": "data/traitements.zip",
+      "nom": "traitements.zip",
+      "legende": "Les scripts qui produisent tout ce qui précède",
+      "famille": "donnees",
+      "octets": 34119
+    },
+    {
+      "chemin": "data/vegetation.geojson",
+      "nom": "vegetation.geojson",
+      "legende": "Indicateurs de couvert végétal par commune",
+      "famille": "donnees",
+      "octets": 296037
+    },
+    {
+      "chemin": "data/artificialisation_meta.json",
+      "nom": "artificialisation_meta.json",
+      "legende": "Fiche de métadonnées — artificialisation",
+      "famille": "fiches",
+      "octets": 1521
+    },
+    {
+      "chemin": "data/fonddeplan_meta.json",
+      "nom": "fonddeplan_meta.json",
+      "legende": "Fiche de métadonnées — fond de plan",
+      "famille": "fiches",
+      "octets": 520
+    },
+    {
+      "chemin": "data/perimetre_meta.json",
+      "nom": "perimetre_meta.json",
+      "legende": "Fiche de métadonnées — périmètre et contours",
+      "famille": "fiches",
+      "octets": 869
+    },
+    {
+      "chemin": "data/risques_meta.json",
+      "nom": "risques_meta.json",
+      "legende": "Fiche de métadonnées — risques naturels",
+      "famille": "fiches",
+      "octets": 1130
+    },
+    {
+      "chemin": "data/vegetation_meta.json",
+      "nom": "vegetation_meta.json",
+      "legende": "Fiche de métadonnées — couvert végétal",
+      "famille": "fiches",
+      "octets": 1080
+    },
+    {
+      "chemin": "planches/B2_jeux_de_donnees.pdf",
+      "nom": "B2_jeux_de_donnees.pdf",
+      "legende": "Dictionnaire des données et fiches de métadonnées",
+      "famille": "documents",
+      "octets": 15813
+    },
+    {
+      "chemin": "planches/planches_demonstrateur.pdf",
+      "nom": "planches_demonstrateur.pdf",
+      "legende": "Cinq planches imprimables des trois volets",
+      "famille": "documents",
+      "octets": 183091
+    }
+  ]
+}

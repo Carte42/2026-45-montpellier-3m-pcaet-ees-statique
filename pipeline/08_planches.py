@@ -282,8 +282,8 @@ def planche_indicateur(pdf, synthese, metas, numero, total) -> None:
         yy -= 0.019 * len(couper(m.get("producteur", ""), 50)) + 0.016
 
     fig.text(0.62, yy - 0.02,
-             "Chaque source est documentée dans le\ndémonstrateur avec son millésime, sa\n"
-             "licence, sa résolution de calcul et ses\nréserves de lecture.",
+             "Chaque source est documentée dans le\ndémonstrateur avec son millésime ou sa\n"
+             "date d'interrogation, sa licence, sa\nrésolution de calcul et ses réserves\nde lecture.",
              color=GRIS, fontsize=7.5, va="top")
 
     fig.text(0.045, 0.165,
