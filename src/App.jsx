@@ -138,17 +138,20 @@ export default function App() {
 
         <nav className="volets">
           {[
-            { n: 1, phase: 'Phase 1', titre: 'Planches d’enjeux' },
-            { n: 2, phase: 'Phase 2', titre: 'Matrice d’incidences' },
-            { n: 3, phase: 'Phase 3', titre: 'Fiche d’indicateur' },
+            { n: 1, romain: 'I', phase: 'Phase 1', titre: 'Planches d’enjeux' },
+            { n: 2, romain: 'II', phase: 'Phase 2', titre: 'Matrice d’incidences' },
+            { n: 3, romain: 'III', phase: 'Phase 3', titre: 'Fiche d’indicateur' },
           ].map((v) => (
             <button
               key={v.n}
               className={volet === v.n ? 'volet on' : 'volet'}
               onClick={() => setVolet(v.n)}
             >
-              <span className="volet-phase">{v.phase}</span>
-              <span className="volet-titre">{v.titre}</span>
+              <span className="volet-num" aria-hidden="true">{v.romain}</span>
+              <span className="volet-texte">
+                <span className="volet-phase">{v.phase}</span>
+                <span className="volet-titre">{v.titre}</span>
+              </span>
             </button>
           ))}
         </nav>

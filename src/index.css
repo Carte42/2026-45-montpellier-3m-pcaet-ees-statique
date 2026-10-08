@@ -36,6 +36,15 @@ button { font: inherit; color: inherit; }
   box-shadow: 4px 0 14px rgba(0,0,0,.45); z-index: 1000;
 }
 
+.sidebar { scrollbar-width: thin; scrollbar-color: var(--rail) transparent; }
+.sidebar::-webkit-scrollbar { width: 9px; }
+.sidebar::-webkit-scrollbar-track { background: transparent; }
+.sidebar::-webkit-scrollbar-thumb {
+  background: var(--rail); border-radius: 5px;
+  border: 2px solid var(--panel); background-clip: padding-box;
+}
+.sidebar::-webkit-scrollbar-thumb:hover { background: var(--accent); background-clip: padding-box; }
+
 .entete { padding-bottom: 12px; border-bottom: 1px solid var(--border); }
 .entete-marche { font-family: var(--mono); font-size: 11px; letter-spacing: .1em; color: var(--muted); text-transform: uppercase; }
 .entete h1 { font-size: 18px; font-weight: 700; color: var(--accent); line-height: 1.2; margin: 6px 0 4px; }
@@ -43,10 +52,20 @@ button { font: inherit; color: inherit; }
 
 .volets { display: flex; flex-direction: column; gap: 5px; }
 .volet {
-  display: flex; flex-direction: column; gap: 2px; text-align: left;
+  display: flex; flex-direction: row; align-items: center; gap: 11px; text-align: left;
   background: var(--panel-2); border: 1px solid transparent; border-left: 3px solid var(--rail);
   border-radius: 6px; padding: 9px 11px; cursor: pointer; transition: border-color .15s, background .15s;
 }
+.volet-texte { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.volet-num {
+  flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  border: 1.5px solid var(--rail); color: var(--muted);
+  font-family: var(--mono); font-size: 13px; font-weight: 700; letter-spacing: .02em;
+  transition: border-color .15s, color .15s, background .15s;
+}
+.volet.on .volet-num { border-color: var(--accent); color: var(--accent); background: rgba(92,166,224,.10); }
+.volet:hover .volet-num { border-color: var(--accent); color: var(--text); }
 .volet:hover { background: var(--panel-3); }
 .volet.on { border-left-color: var(--accent); background: var(--panel-3); }
 .volet-phase { font-family: var(--mono); font-size: 10.5px; letter-spacing: .08em; color: var(--muted); text-transform: uppercase; }
@@ -59,7 +78,9 @@ button { font: inherit; color: inherit; }
 .mention { margin-top: auto; font-size: 11px; color: #5b6b8a; line-height: 1.5; border-top: 1px solid var(--border); padding-top: 12px; }
 
 .carte { flex: 1; min-width: 0; position: relative; background: var(--bg); }
-.selecteur-themes { position: absolute; top: 12px; left: 12px; right: 12px; z-index: 500; display: flex; gap: 6px; flex-wrap: wrap; }
+/* Le retrait à gauche dégage la commande de zoom de la carte, qui occupe
+   le coin supérieur gauche et masquait le premier bouton. */
+.selecteur-themes { position: absolute; top: 12px; left: 58px; right: 12px; z-index: 500; display: flex; gap: 6px; flex-wrap: wrap; }
 .theme {
   background: rgba(16,33,62,.92); border: 1px solid var(--border); color: var(--muted);
   border-radius: 7px; padding: 7px 12px; font-size: 12.5px; cursor: pointer;
