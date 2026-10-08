@@ -1,0 +1,10 @@
+{
+  "produit": "Plan IGN v2 — fond de plan cartographique",
+  "producteur": "Institut national de l'information géographique et forestière",
+  "acces": "service de tuiles de la Géoplateforme, data.geopf.fr",
+  "couche": "GEOGRAPHICALGRIDSYSTEMS.PLANIGNV2",
+  "date_d_interrogation": "8 octobre 2026",
+  "resolution_de_calcul_m": "tuiles de 256 pixels, pyramide standard du web",
+  "licence": "Licence ouverte Etalab 2.0",
+  "usage": "affichage seul — aucune donnée de ce fond n'entre dans les calculs"
+}

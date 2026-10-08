@@ -1,0 +1,11 @@
+{
+  "produit": "Découpage administratif — communes et contours",
+  "producteur": "Etalab, à partir du Code officiel géographique et de la base Admin Express de l'Institut national de l'information géographique et forestière",
+  "acces": "interface de programmation geo.api.gouv.fr, sans authentification",
+  "requete": "epcis/243400017/communes — numéro d'identification de la Métropole",
+  "date_d_interrogation": "8 octobre 2026",
+  "resultat": "31 communes, 522 542 habitants, 43 893 hectares",
+  "resolution_de_calcul_m": "contours simplifiés à 10 m pour l'affichage, calculs conduits sur les géométries d'origine",
+  "licence": "Licence ouverte Etalab 2.0",
+  "reserve_de_lecture": "La population est celle que publie le découpage administratif. Le cahier des charges annonce 522 000 habitants en 2023, soit le même ordre de grandeur."
+}

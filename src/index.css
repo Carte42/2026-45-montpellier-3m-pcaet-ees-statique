@@ -94,6 +94,16 @@ button { font: inherit; color: inherit; }
 .leaflet-tooltip.survol::before { display: none; }
 
 
+
+.matrice { width: 100%; border-collapse: collapse; font-size: 11.5px; }
+.matrice th { text-align: left; color: var(--muted); font-weight: 500; font-size: 10px; text-transform: uppercase; letter-spacing: .05em; padding: 4px 5px 4px 0; }
+.matrice td { padding: 4px 5px 4px 0; border-top: 1px solid var(--border); line-height: 1.35; vertical-align: top; }
+.matrice tr:hover td { background: var(--panel-3); cursor: help; }
+.matrice .petit { color: var(--muted); font-size: 10.5px; }
+.matrice .pos { color: #45C6A4; font-weight: 700; text-align: center; }
+.matrice .neg { color: #E2AC5C; font-weight: 700; text-align: center; }
+.matrice .note { font-family: var(--mono); color: var(--accent); text-align: right; }
+
 /* ── Légende du choroplèthe ──────────────────────────────────────────── */
 .legende {
   position: absolute; right: 12px; top: 56px; z-index: 500;

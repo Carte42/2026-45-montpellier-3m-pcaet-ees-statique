@@ -26,6 +26,14 @@ const LIBELLES = {
   pixels_exploitables_pct: 'Pixels exploitables',
   note_vulnerabilite: 'Note sur la vulnérabilité',
   nb_appels: "Nombre d'appels",
+  millesimes: 'Millésimes',
+  date_de_publication: 'Date de publication',
+  date_d_interrogation: "Date d'interrogation",
+  reserve_de_lecture: 'Réserve de lecture',
+  couche: 'Couche',
+  usage: 'Usage',
+  requete: 'Requête',
+  resultat: 'Résultat',
   communes_par_risque: 'Communes concernées, par risque',
   territoires_a_risque_important_inondation: "Territoires à risque important d'inondation",
 }
@@ -53,6 +61,7 @@ export default function App() {
   const [territoire, setTerritoire] = useState(null)
   const [synthese, setSynthese] = useState(null)
   const [flux, setFlux] = useState([])
+  const [matrice, setMatrice] = useState(null)
   const [metas, setMetas] = useState({})
   const [volet, setVolet] = useState(1)
   const [cleIndic, setCleIndic] = useState(INDICATEURS[0].cle)
@@ -68,12 +77,16 @@ export default function App() {
       fetch(`${b}data/artificialisation_meta.json`).then((r) => r.json()),
       fetch(`${b}data/vegetation_meta.json`).then((r) => r.json()),
       fetch(`${b}data/risques_meta.json`).then((r) => r.json()),
+      fetch(`${b}data/matrice.json`).then((r) => r.json()),
+      fetch(`${b}data/perimetre_meta.json`).then((r) => r.json()),
+      fetch(`${b}data/fonddeplan_meta.json`).then((r) => r.json()),
     ])
-      .then(([t, s, f, ma, mv, mr]) => {
+      .then(([t, s, f, ma, mv, mr, mx, mp, mf]) => {
         setTerritoire(t)
         setSynthese(s)
         setFlux(f)
-        setMetas({ artificialisation: ma, vegetation: mv, risques: mr })
+        setMatrice(mx)
+        setMetas({ perimetre: mp, artificialisation: ma, vegetation: mv, risques: mr, fonddeplan: mf })
       })
       .catch((e) => console.error('Chargement des données', e))
   }, [])
@@ -208,6 +221,38 @@ export default function App() {
               </ul>
             </section>
 
+            {matrice && (
+              <section className="bloc">
+                <h2>Matrice appliquée — {matrice.cellules.length} croisements</h2>
+                <p className="aide">
+                  Les trois enjeux croisés avec les leviers de compétence de la
+                  Métropole. Les croisements sans incidence notable ne sont pas
+                  renseignés : une matrice réelle comporte des cases vides.
+                </p>
+                <table className="matrice">
+                  <thead>
+                    <tr><th>Levier</th><th>Enjeu</th><th>Sens</th><th>Int.</th></tr>
+                  </thead>
+                  <tbody>
+                    {matrice.cellules.map((c, i) => (
+                      <tr key={i} title={c.justification}>
+                        <td>{c.levier}</td>
+                        <td className="petit">{c.enjeu.split(' —')[0].split(' et ')[0]}</td>
+                        <td className={c.sens === 'positif' ? 'pos' : 'neg'}>
+                          {c.sens === 'positif' ? '+' : '−'}
+                        </td>
+                        <td className="note">{c.intensite}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+                <p className="aide">
+                  Survolez une ligne pour lire la justification. Les cinq attributs
+                  complets et les justifications figurent dans l&apos;export tableur.
+                </p>
+              </section>
+            )}
+
             <section className="bloc">
               <h2>Flux de couverture mesurés — 2021-2024</h2>
               <p className="aide">
@@ -259,6 +304,18 @@ export default function App() {
           <div className="exports">
             <a href={`${import.meta.env.BASE_URL}data/territoire.geojson`} download>
               Couche communale — GeoJSON
+            </a>
+            <a href={`${import.meta.env.BASE_URL}data/territoire_shp.zip`} download>
+              Couche communale — Shapefile
+            </a>
+            <a href={`${import.meta.env.BASE_URL}data/territoire.csv`} download>
+              Indicateurs communaux — tableur
+            </a>
+            <a href={`${import.meta.env.BASE_URL}data/matrice.csv`} download>
+              Matrice d&apos;incidences — tableur
+            </a>
+            <a href={`${import.meta.env.BASE_URL}data/flux.csv`} download>
+              Flux de couverture — tableur
             </a>
             <a href={`${import.meta.env.BASE_URL}data/synthese.json`} download>
               Chiffres de synthèse — JSON

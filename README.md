@@ -24,14 +24,21 @@ avec le sien.
 
 | Volet | Phase du lot 1 | Contenu |
 |---|---|---|
-| 1 — Planches d'enjeux | Phase 1, état initial de l'environnement | 3 thématiques sur les 31 communes, avec la grille de hiérarchisation affichée à côté de son résultat |
-| 2 — Matrice d'incidences | Phase 2, évaluation des incidences | Orientations du PCAET solidaire 2021-2026 croisées aux enjeux, échelle de notation publiée, export tableur |
-| 3 — Fiche d'indicateur | Phase 3, dispositif de suivi | Un indicateur renseigné à l'état initial, avec sa source, son porteur, son pas de temps et sa chaîne de calcul |
+| 1 — Planches d'enjeux | Phase 1, état initial de l'environnement | 3 enjeux sur les 31 communes, grille de hiérarchisation à trois critères affichée à côté de son résultat, classement communal |
+| 2 — Matrice d'incidences | Phase 2, évaluation des incidences | Échelle des cinq attributs publiée avant tout résultat, matrice appliquée aux leviers de compétence de la Métropole — 14 croisements renseignés sur 24 —, et flux de couverture du sol mesurés |
+| 3 — Fiche d'indicateur | Phase 3, dispositif de suivi | Un indicateur renseigné à l'état initial, avec sa source, son porteur, son pas de temps, son seuil d'alerte et sa chaîne de calcul |
 
-Trois thématiques retenues sur les dix que le cahier des charges impose, choisies parce que la
-donnée ouverte existe et parce que le cahier des charges les cite nommément pour ce territoire :
-**artificialisation et occupation du sol**, **vagues de chaleur et couvert végétal**,
-**risques naturels**.
+Trois enjeux retenus sur les dix que le cahier des charges impose a minima, choisis parce que la
+donnée ouverte existe et parce que le cahier des charges cite nommément les aléas correspondants
+pour ce territoire : **artificialisation et occupation du sol**, **climat sous l'angle de
+l'adaptation aux vagues de chaleur et du couvert végétal**, **risques naturels**.
+
+## Exports
+
+Couche communale en GeoJSON et en Shapefile, indicateurs communaux, matrice d'incidences et flux
+de couverture en tableur, chiffres de synthèse en JSON. Les cinq sources employées sont
+documentées dans le volet « sources et méthode » de l'interface : producteur, millésime, licence,
+résolution de calcul et réserves de lecture.
 
 ## Périmètre
 

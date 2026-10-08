@@ -13,5 +13,9 @@
   "territoires_a_risque_important_inondation": {
     "Montpellier-Lunel-Mauguio": 19
   },
-  "note": "Les familles de risques sont agrégées au niveau parent de la nomenclature GASPAR : un sous-type comme la crue à montée rapide est compté dans la famille Inondation."
+  "note": "Les familles de risques sont agrégées au niveau parent de la nomenclature GASPAR : un sous-type comme la crue à montée rapide est compté dans la famille Inondation.",
+  "date_d_interrogation": "8 octobre 2026",
+  "resolution_de_calcul_m": "échelle communale — un enregistrement par commune",
+  "licence": "Licence ouverte Etalab 2.0",
+  "reserve_de_lecture": "Le point d'entrée relatif au retrait-gonflement des argiles attend d'autres paramètres que le code commune et n'a pas été interrogé. L'aléa reste couvert par la famille « mouvement de terrain » de l'inventaire GASPAR."
 }

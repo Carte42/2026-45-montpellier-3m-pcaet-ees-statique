@@ -20,5 +20,6 @@
   ],
   "pixels_exploitables_pct": 82.4,
   "perimetre": "31 communes de Montpellier Méditerranée Métropole",
-  "note_vulnerabilite": "L'indice de vulnérabilité croise le rang de part de végétation faible et le rang de densité de population. Il hiérarchise les communes entre elles et n'a pas de valeur absolue. La densité communale est un substitut à la répartition fine de la population, qui relèverait d'un carroyage."
+  "note_vulnerabilite": "L'indice de vulnérabilité croise le rang de part de végétation faible et le rang de densité de population. Il hiérarchise les communes entre elles et n'a pas de valeur absolue. La densité communale est un substitut à la répartition fine de la population, qui relèverait d'un carroyage.",
+  "licence": "Données Copernicus, réutilisation libre"
 }
