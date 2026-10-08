@@ -31,6 +31,8 @@ from matplotlib.backends.backend_pdf import PdfPages  # noqa: E402
 from matplotlib.colors import ListedColormap, BoundaryNorm  # noqa: E402
 from matplotlib.patches import Rectangle  # noqa: E402
 
+import carto  # noqa: E402
+
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 RACINE = Path(__file__).resolve().parent
@@ -117,6 +119,11 @@ def pied(fig, source: str, numero: int, total: int) -> None:
              ha="right", family="monospace")
 
 
+# Géométrie de la planche cartographique, en fractions de page.
+CARTE = {"x": 0.045, "y": 0.125, "l": 0.615, "h": 0.695}
+COLONNE = 0.695
+
+
 def planche_carte(pdf, gdf, champ, palette, titre, sous_titre, unite, source,
                   notes, numero, total) -> None:
     fig = plt.figure(figsize=A4_PAYSAGE)
@@ -124,24 +131,40 @@ def planche_carte(pdf, gdf, champ, palette, titre, sous_titre, unite, source,
     cartouche(fig, titre, sous_titre)
     pied(fig, source, numero, total)
 
-    ax = fig.add_axes([0.045, 0.11, 0.60, 0.72])
+    ax = fig.add_axes([CARTE["x"], CARTE["y"], CARTE["l"], CARTE["h"]])
+    largeur_pouces = CARTE["l"] * A4_PAYSAGE[0]
+    hauteur_pouces = CARTE["h"] * A4_PAYSAGE[1]
+
+    # ── Emprise et fond de plan ─────────────────────────────────────────────
+    bbox = carto.emprise(gdf, largeur_pouces / hauteur_pouces)
+    fond = carto.fond_de_plan(bbox)
+    ax.imshow(fond, extent=(bbox[0], bbox[2], bbox[1], bbox[3]),
+              interpolation="bilinear", zorder=0)
+
+    # ── Donnée thématique ───────────────────────────────────────────────────
     valeurs = gdf[champ].astype(float)
     vmin, vmax = valeurs.min(), valeurs.max()
     bornes = [vmin + (vmax - vmin) * i / 5 for i in range(6)]
     cmap = ListedColormap(PALETTES[palette])
     gdf.plot(column=champ, ax=ax, cmap=cmap, norm=BoundaryNorm(bornes, cmap.N),
-             edgecolor="white", linewidth=0.5)
-    ax.set_axis_off()
+             edgecolor="#55585e", linewidth=0.55, alpha=0.78, zorder=2)
+    # Le contour du territoire, net, par-dessus le remplissage translucide.
+    gdf.dissolve().boundary.plot(ax=ax, edgecolor=ENCRE, linewidth=1.1, zorder=3)
 
-    # Nom des cinq communes aux valeurs les plus élevées.
-    for _, r in gdf.nlargest(5, champ).iterrows():
-        c = r.geometry.representative_point()
-        ax.annotate(r["nom"], (c.x, c.y), fontsize=6.5, color=ENCRE,
-                    ha="center", va="center")
+    ax.set_xlim(bbox[0], bbox[2])
+    ax.set_ylim(bbox[1], bbox[3])
+    ax.set_aspect("equal")
+
+    # ── Habillage ───────────────────────────────────────────────────────────
+    posees = carto.etiquettes_communes(ax, gdf, largeur_pouces=largeur_pouces)
+    carto.cadre_blanc(ax, 0.022, 0.030, 0.30, 0.055)
+    carto.echelle_graphique(ax)
+    carto.fleche_nord(ax)
+    carto.bordure_cotee(ax)
 
     # ── Colonne de droite : échelle et grille de hiérarchisation ────────────
-    x0 = 0.68
-    fig.text(x0, 0.80, "ÉCHELLE", color=GRIS, fontsize=7.5)
+    x0 = COLONNE
+    fig.text(x0, 0.800, "LÉGENDE", color=GRIS, fontsize=7.5)
     for i, c in enumerate(PALETTES[palette]):
         fig.add_artist(Rectangle((x0 + i * 0.047, 0.755), 0.045, 0.022,
                                  facecolor=c, edgecolor="white", lw=0.6,
@@ -163,22 +186,27 @@ def planche_carte(pdf, gdf, champ, palette, titre, sous_titre, unite, source,
     fig.text(x0 + 0.235, y - 0.022, f"{sum(notes.values())} / 9", color=ACCENT,
              fontsize=9, ha="right", family="monospace", weight="bold")
 
-    fig.text(x0, y - 0.085,
-             "La note figure à côté de son résultat :\nle classement est vérifiable, "
-             "non pas seulement\nconstaté.", color=GRIS, fontsize=7.5, va="top")
+    fig.text(x0, y - 0.080,
+             "Chaque critère est noté de 1 à 3.\nLa note figure à côté de son résultat.",
+             color=GRIS, fontsize=7.5, va="top")
 
     # Cinq premières communes
-    fig.text(x0, y - 0.175, "CINQ PREMIÈRES COMMUNES", color=GRIS, fontsize=7.5)
-    yy = y - 0.212
+    fig.text(x0, y - 0.155, "CINQ PREMIÈRES COMMUNES", color=GRIS, fontsize=7.5)
+    yy = y - 0.192
     for _, r in gdf.nlargest(5, champ).iterrows():
         fig.text(x0, yy, r["nom"], color=ENCRE, fontsize=8)
         fig.text(x0 + 0.235, yy, fr(r[champ]), color=ENCRE,
                  fontsize=8, ha="right", family="monospace")
         yy -= 0.028
 
+    fig.text(x0, 0.150,
+             "Projection RGF93 / Lambert-93.\nFond de plan : Plan IGN v2,\n"
+             "Géoplateforme.\nLes 31 communes sont nommées.",
+             color=GRIS, fontsize=7, va="top")
+
     pdf.savefig(fig)
     plt.close(fig)
-    print(f"  planche {numero} : {titre}")
+    print(f"  planche {numero} : {titre} — {posees} communes nommées")
 
 
 def planche_matrice(pdf, matrice, numero, total) -> None:
