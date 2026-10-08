@@ -72,7 +72,10 @@ npm install
 npm run dev
 ```
 
-## Hébergement
+## Publication
 
-Déploiement sur **pcaet.carte42.fr**, infrastructure OVH en France, comme l'ensemble des
-productions mises en ligne par Carte 42.
+**https://pcaet.carte42.fr** — publication automatique à chaque poussée sur `main`.
+
+Le fichier `public/CNAME` porte le domaine personnalisé : Vite le recopie dans `dist/` à chaque
+construction. Sans lui, chaque déploiement écraserait le domaine et la page retomberait sur
+l'adresse `github.io`.
