@@ -90,8 +90,23 @@ export default function MapView({ territoire, champ, palette, format, onSurvol }
     }).addTo(carte)
 
     refCouche.current = couche
-    carte.fitBounds(couche.getBounds(), { padding: [24, 24] })
     setBornes({ min, max, couleurs })
+
+    // Leaflet mesure son conteneur a la creation : si les donnees arrivent
+    // apres, le cadrage est calcule sur une taille perimee. On redimensionne
+    // avant d'ajuster l'emprise, et une seconde fois au cas ou la mise en page
+    // se stabilise apres la premiere image.
+    const ajuster = () => {
+      carte.invalidateSize(false)
+      carte.fitBounds(couche.getBounds(), { padding: [24, 24] })
+    }
+    ajuster()
+    const t = setTimeout(ajuster, 400)
+    window.addEventListener('resize', ajuster)
+    return () => {
+      clearTimeout(t)
+      window.removeEventListener('resize', ajuster)
+    }
   }, [territoire, champ, palette, format, onSurvol])
 
   return (
