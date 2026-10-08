@@ -24,6 +24,10 @@ export default function MapView({ territoire, champ, palette, format, onSurvol }
       zoom: MAP_ZOOM,
       zoomControl: true,
       attributionControl: true,
+      // Le fondu d'apparition des tuiles les laisse a opacite nulle s'il est
+      // interrompu par un recadrage. Sur une page qui doit etre juste des la
+      // premiere seconde, un rendu deterministe vaut mieux qu'une transition.
+      fadeAnimation: false,
     })
 
     // Service de tuiles de la Géoplateforme : Leaflet substitue {z}/{x}/{y}
