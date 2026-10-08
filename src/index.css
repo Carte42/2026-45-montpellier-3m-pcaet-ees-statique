@@ -1,0 +1,280 @@
+/* Démonstrateur — évaluation environnementale stratégique du PCAET
+   Montpellier Méditerranée Métropole · M6C0007TE lot 1 · Carte 42
+
+   Parti pris : un seul thème, sombre, pour que le fond de plan IGN — qui est
+   clair — ressorte. Sobriété assumée : pas de dégradé, pas d'esthétique de
+   tableau de bord. Les dates et les sources sont visibles partout, c'est ce
+   qui distingue une carte à laquelle on fait confiance d'une jolie carte. */
+
+:root {
+  --bg: #0b1224;
+  --panel: #16213e;
+  --panel-2: #0f1e3d;
+  --panel-3: #16294d;
+  --border: #2a2a4a;
+  --rail: #2a3a6a;
+  --text: #e4e7f0;
+  --muted: #8899bb;
+  --label: #aabbdd;
+  --accent: #5CA6E0;
+  --ui: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --mono: 'IBM Plex Mono', ui-monospace, Consolas, monospace;
+  color-scheme: dark;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body, #root { height: 100%; }
+body { background: var(--bg); color: var(--text); font-family: var(--ui); font-size: 16px; -webkit-font-smoothing: antialiased; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.app { display: flex; height: 100%; overflow: hidden; }
+
+.sidebar {
+  width: 320px; flex-shrink: 0; background: var(--panel);
+  padding: 16px; overflow-y: auto; display: flex; flex-direction: column; gap: 16px;
+  box-shadow: 4px 0 14px rgba(0,0,0,.45); z-index: 1000;
+}
+
+.entete { padding-bottom: 12px; border-bottom: 1px solid var(--border); }
+.entete-marche { font-family: var(--mono); font-size: 11px; letter-spacing: .1em; color: var(--muted); text-transform: uppercase; }
+.entete h1 { font-size: 18px; font-weight: 700; color: var(--accent); line-height: 1.2; margin: 6px 0 4px; }
+.entete-territoire { font-size: 12.5px; color: var(--muted); line-height: 1.45; }
+
+.volets { display: flex; flex-direction: column; gap: 5px; }
+.volet {
+  display: flex; flex-direction: column; gap: 2px; text-align: left;
+  background: var(--panel-2); border: 1px solid transparent; border-left: 3px solid var(--rail);
+  border-radius: 6px; padding: 9px 11px; cursor: pointer; transition: border-color .15s, background .15s;
+}
+.volet:hover { background: var(--panel-3); }
+.volet.on { border-left-color: var(--accent); background: var(--panel-3); }
+.volet-phase { font-family: var(--mono); font-size: 10.5px; letter-spacing: .08em; color: var(--muted); text-transform: uppercase; }
+.volet-titre { font-size: 13.5px; font-weight: 500; }
+
+.bloc { background: var(--panel-2); border-radius: 8px; padding: 13px; }
+.bloc h2 { font-size: 11px; font-weight: 600; color: var(--label); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 8px; }
+.aide { font-size: 12.5px; color: var(--muted); line-height: 1.5; }
+
+.mention { margin-top: auto; font-size: 11px; color: #5b6b8a; line-height: 1.5; border-top: 1px solid var(--border); padding-top: 12px; }
+
+.carte { flex: 1; min-width: 0; position: relative; background: var(--bg); }
+.selecteur-themes { position: absolute; top: 12px; left: 12px; right: 12px; z-index: 500; display: flex; gap: 6px; flex-wrap: wrap; }
+.theme {
+  background: rgba(16,33,62,.92); border: 1px solid var(--border); color: var(--muted);
+  border-radius: 7px; padding: 7px 12px; font-size: 12.5px; cursor: pointer;
+  backdrop-filter: blur(8px); transition: color .15s, border-color .15s;
+}
+.theme:hover { color: var(--text); border-color: var(--rail); }
+.theme.on { color: var(--accent); border-color: var(--accent); background: var(--panel-3); }
+
+.carte-attente { display: flex; align-items: center; justify-content: center; height: 100%; color: var(--muted); font-size: 14px; }
+
+@media (max-width: 760px) {
+  .app { flex-direction: column; }
+  .sidebar { width: 100%; max-height: 47%; }
+  .carte { min-height: 300px; }
+}
+
+/* ── Onboarding ───────────────────────────────────────────────── */
+.ob-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  pointer-events: none;
+}
+
+.ob-welcome-card {
+  position: absolute;
+  top: 50%;
+  left: calc(320px + (100vw - 320px) / 2);
+  transform: translate(-50%, -50%);
+  width: min(440px, calc(100vw - 340px));
+  background: rgba(10, 20, 50, 0.95);
+  border: 1px solid #3a6aaa;
+  border-radius: 16px;
+  backdrop-filter: blur(14px);
+  box-shadow: 0 0 40px rgba(126, 179, 255, 0.2), 0 16px 48px rgba(0,0,0,0.7);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 32px 32px 28px;
+  pointer-events: all;
+  animation: ob-float-center 3.5s ease-in-out infinite;
+}
+
+.ob-welcome-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: #c0d8ff;
+  letter-spacing: 0.02em;
+  text-align: center;
+  line-height: 1.3;
+}
+
+.ob-welcome-subtitle {
+  font-size: 13px;
+  color: #556a8a;
+  text-align: center;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-top: -6px;
+}
+
+.ob-welcome-text {
+  font-size: 16px;
+  color: #8899bb;
+  line-height: 1.65;
+  text-align: center;
+}
+
+.ob-start {
+  margin-top: 8px;
+  background: rgba(30, 80, 160, 0.7);
+  color: #c0d8ff;
+  border: 1px solid #4a7abf;
+  border-radius: 10px;
+  padding: 12px 36px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  transition: background 0.15s, border-color 0.15s, box-shadow 0.15s;
+  box-shadow: 0 0 18px rgba(126, 179, 255, 0.15);
+}
+
+.ob-start:hover {
+  background: rgba(40, 100, 210, 0.85);
+  border-color: #7eb3ff;
+  color: #fff;
+  box-shadow: 0 0 26px rgba(126, 179, 255, 0.35);
+}
+
+@keyframes ob-float-center {
+  0%, 100% { transform: translate(-50%, -50%) translateY(0px); }
+  50%       { transform: translate(-50%, -50%) translateY(-7px); }
+}
+
+@keyframes ob-float-left {
+  0%, 100% { transform: translateY(-50%) translateX(0); }
+  50%       { transform: translateY(-50%) translateX(-5px); }
+}
+
+.ob-card {
+  position: absolute;
+  width: 280px;
+  background: rgba(10, 20, 50, 0.93);
+  border: 1px solid #3a6aaa;
+  border-radius: 12px;
+  overflow: visible;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 28px rgba(126, 179, 255, 0.22), 0 8px 32px rgba(0,0,0,0.6);
+  pointer-events: all;
+  display: flex;
+  flex-direction: column;
+}
+
+.ob-card--bottom {
+  bottom: 98px;
+  left: calc(320px + (100vw - 320px) / 2);
+  transform: translateX(-50%);
+  animation: ob-float-bottom 3s ease-in-out infinite;
+}
+
+@keyframes ob-float-bottom {
+  0%, 100% { transform: translateX(-50%) translateY(0px); }
+  50%       { transform: translateX(-50%) translateY(-7px); }
+}
+
+.ob-card--left { top: 230px; left: 336px; animation: ob-float-left 3s ease-in-out infinite; }
+.ob-card--left-low { top: 430px; left: 336px; animation: ob-float-left 3s ease-in-out infinite; }
+.ob-card--right-low { bottom: 40px; right: 260px; animation: ob-float-right 3s ease-in-out infinite; }
+
+@keyframes ob-float-right {
+  0%, 100% { transform: translateX(0); }
+  50%       { transform: translateX(5px); }
+}
+
+.ob-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  pointer-events: none;
+  box-shadow: inset 0 0 18px rgba(126, 179, 255, 0.12);
+}
+
+.ob-body { padding: 16px 16px 10px; display: flex; flex-direction: column; gap: 6px; }
+.ob-emoji { font-size: 31px; line-height: 1; }
+.ob-title { font-size: 17px; font-weight: 700; color: #c0d8ff; line-height: 1.3; }
+.ob-text { font-size: 14px; color: #8899bb; line-height: 1.55; }
+
+.ob-ok {
+  margin: 0 16px 14px;
+  background: rgba(30, 80, 160, 0.6);
+  color: #c0d8ff;
+  border: 1px solid #4a7abf;
+  border-radius: 8px;
+  padding: 8px 14px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 700;
+  transition: background 0.15s, border-color 0.15s;
+  text-align: center;
+}
+
+.ob-ok:hover { background: rgba(40, 100, 200, 0.75); border-color: #7eb3ff; color: #fff; }
+
+.ob-arrow--down {
+  text-align: center;
+  font-size: 24px;
+  color: #7eb3ff;
+  padding: 2px 0 10px;
+  animation: ob-pulse 1.4s ease-in-out infinite;
+}
+
+.ob-arrow--left-ext {
+  position: absolute;
+  left: -26px;
+  top: 32px;
+  font-size: 24px;
+  color: #7eb3ff;
+  animation: ob-pulse 1.4s ease-in-out infinite;
+}
+
+.ob-arrow--left-ext-bottom {
+  position: absolute;
+  left: -26px;
+  bottom: 18px;
+  font-size: 24px;
+  color: #7eb3ff;
+  animation: ob-pulse 1.4s ease-in-out infinite;
+}
+
+.ob-arrow--right-ext {
+  position: absolute;
+  right: -26px;
+  top: 32px;
+  font-size: 24px;
+  color: #7eb3ff;
+  animation: ob-pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes ob-pulse {
+  0%, 100% { opacity: 0.45; }
+  50%       { opacity: 1; }
+}
+
+/* ── Responsive onboarding ── */
+@media (max-height: 750px) {
+  .ob-welcome-card { gap: 8px; padding: 20px 24px 16px; }
+  .ob-welcome-title { font-size: 18px; }
+  .ob-welcome-text { font-size: 14px; }
+  .ob-start { font-size: 15px; padding: 10px 28px; margin-top: 4px; }
+  .ob-card--bottom { bottom: 60px; }
+}
+
+@media (max-width: 1100px) {
+  .ob-card--left, .ob-card--left-low { left: 330px; width: 240px; }
+  .ob-arrow--left-ext, .ob-arrow--left-ext-bottom { left: -22px; font-size: 20px; }
+}
