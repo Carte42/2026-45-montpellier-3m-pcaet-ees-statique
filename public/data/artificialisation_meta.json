@@ -1,0 +1,21 @@
+{
+  "produit": "OCS GE Artificialisation 2.0, couches de difference",
+  "producteur": "Institut national de l'information geographique et forestiere",
+  "departement": "34 — Herault",
+  "periodes": [
+    {
+      "etiquette": "2018-2021",
+      "fichier": "OCS-GE-ARTIFICIALISATION_2-0_DIFF-2018-2021_GPKG_LAMB93_D034_2025-09-16"
+    },
+    {
+      "etiquette": "2021-2024",
+      "fichier": "OCS-GE-ARTIFICIALISATION_2-0_DIFF-2021-2024_GPKG_LAMB93_D034_2026-08-27"
+    }
+  ],
+  "projection_de_calcul": "EPSG:2154",
+  "perimetre": "31 communes de Montpellier Mediterranee Metropole",
+  "unite": "hectare",
+  "licence": "Licence ouverte Etalab",
+  "note": "Surfaces calculees par intersection des couches d'evolution avec les contours communaux, en Lambert-93. Ces couches ne contiennent que les polygones ayant change entre les deux millesimes. Le champ artificialisation vaut 1 pour une artificialisation et -1 pour une desartificialisation ; le solde des deux est l'indicateur de l'objectif de zero artificialisation nette.",
+  "lecture_des_flux": "L'artificialisation se definit au produit par la combinaison de la couverture et de l'usage du sol. Un flux peut donc apparaitre sans changement de classe de couverture, lorsque seul l'usage a change."
+}

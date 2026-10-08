@@ -1,0 +1,98 @@
+[
+  {
+    "periode": "2018-2021",
+    "depuis": "Sols nus naturels",
+    "vers": "Zones impermeables, autres",
+    "surface_ha": 69.0
+  },
+  {
+    "periode": "2018-2021",
+    "depuis": "Sols nus naturels",
+    "vers": "Sols nus naturels",
+    "surface_ha": 31.5
+  },
+  {
+    "periode": "2018-2021",
+    "depuis": "Sols nus naturels",
+    "vers": "Zones baties",
+    "surface_ha": 17.3
+  },
+  {
+    "periode": "2018-2021",
+    "depuis": "Sols nus naturels",
+    "vers": "Zones non baties, revetues",
+    "surface_ha": 15.2
+  },
+  {
+    "periode": "2018-2021",
+    "depuis": "Autre vegetation",
+    "vers": "Sols nus naturels",
+    "surface_ha": 8.9
+  },
+  {
+    "periode": "2018-2021",
+    "depuis": "Autre vegetation",
+    "vers": "Zones impermeables, autres",
+    "surface_ha": 7.9
+  },
+  {
+    "periode": "2018-2021",
+    "depuis": "Formations herbacees",
+    "vers": "Zones impermeables, autres",
+    "surface_ha": 7.8
+  },
+  {
+    "periode": "2018-2021",
+    "depuis": "Formations ligneuses basses",
+    "vers": "Zones impermeables, autres",
+    "surface_ha": 4.6
+  },
+  {
+    "periode": "2021-2024",
+    "depuis": "Sols nus naturels",
+    "vers": "Zones impermeables, autres",
+    "surface_ha": 42.6
+  },
+  {
+    "periode": "2021-2024",
+    "depuis": "Sols nus naturels",
+    "vers": "Sols nus naturels",
+    "surface_ha": 17.4
+  },
+  {
+    "periode": "2021-2024",
+    "depuis": "Sols nus naturels",
+    "vers": "Zones baties",
+    "surface_ha": 14.3
+  },
+  {
+    "periode": "2021-2024",
+    "depuis": "Formations ligneuses basses",
+    "vers": "Zones impermeables, autres",
+    "surface_ha": 14.0
+  },
+  {
+    "periode": "2021-2024",
+    "depuis": "Formations herbacees",
+    "vers": "Zones impermeables, autres",
+    "surface_ha": 13.8
+  },
+  {
+    "periode": "2021-2024",
+    "depuis": "Sols nus naturels",
+    "vers": "Zones non baties, revetues",
+    "surface_ha": 7.2
+  },
+  {
+    "periode": "2021-2024",
+    "depuis": "Formations ligneuses hautes",
+    "vers": "Zones impermeables, autres",
+    "surface_ha": 5.9
+  },
+  {
+    "periode": "2021-2024",
+    "depuis": "Formations herbacees",
+    "vers": "Sols nus naturels",
+    "surface_ha": 3.2
+  }
+]
