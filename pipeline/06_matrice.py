@@ -161,10 +161,12 @@ def main() -> None:
     # ── Indicateurs communaux ────────────────────────────────────────────────
     territoire = gpd.read_file(DATA / "territoire.geojson")
     colonnes = [c for c in territoire.columns if c != "geometry"]
+    # Une valeur absente s'écrit comme une cellule vide : « nan » dans un export
+    # tabulaire est une fuite de l'outil de calcul, pas une donnée.
     ecrire_csv(
         "territoire.csv",
         colonnes,
-        territoire[colonnes].values.tolist(),
+        territoire[colonnes].where(territoire[colonnes].notna(), "").values.tolist(),
     )
 
     # ── Shapefile ────────────────────────────────────────────────────────────

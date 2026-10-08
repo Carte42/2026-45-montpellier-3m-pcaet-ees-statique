@@ -320,6 +320,18 @@ export default function App() {
             <a href={`${import.meta.env.BASE_URL}data/synthese.json`} download>
               Chiffres de synthèse — JSON
             </a>
+            <a
+              href={`${import.meta.env.BASE_URL}planches/planches_demonstrateur.pdf`}
+              download
+            >
+              Planches imprimables — PDF
+            </a>
+            <a
+              href={`${import.meta.env.BASE_URL}planches/B2_jeux_de_donnees.pdf`}
+              download
+            >
+              Dictionnaire des données et métadonnées — PDF
+            </a>
             <button className="lien" onClick={() => setSourcesOuvertes(true)}>
               Sources et méthode
             </button>
