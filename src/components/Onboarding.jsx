@@ -62,9 +62,10 @@ export default function Onboarding() {
           </div>
           <div className="ob-welcome-text">
             31 communes, trois thématiques, données ouvertes exclusivement.
-            Cette interface reproduit à échelle réduite la chaîne des phases 1 à 3
-            du lot&nbsp;1 : état initial cartographié et hiérarchisé, matrice
-            d'incidences, indicateur de suivi renseigné.
+            Cette interface, proposée à titre d'exemple, reproduit à échelle
+            réduite la chaîne des phases 1 à 3 du lot&nbsp;1 : état initial
+            cartographié et hiérarchisé, matrice d'incidences, indicateur de
+            suivi renseigné.
           </div>
           <button className="ob-start" onClick={next}>Commencer →</button>
         </div>
@@ -76,11 +77,11 @@ export default function Onboarding() {
           <div className="ob-glow" />
           <div className="ob-body">
             <div className="ob-emoji">🗺</div>
-            <div className="ob-title">Trois enjeux, trois cartes</div>
+            <div className="ob-title">Choisissez un enjeu</div>
             <div className="ob-text">
-              Artificialisation, vagues de chaleur et risques naturels — trois des
-              dix thématiques imposées par le cahier des charges, celles que le
-              cahier des charges cite nommément pour ce territoire.
+              Artificialisation, vagues de chaleur et risques naturels : trois des
+              dix thématiques environnementales imposées par le cahier des charges,
+              retenues parmi celles qu'il cite nommément pour ce territoire.
             </div>
           </div>
           <button className="ob-ok" onClick={next}>OK, compris →</button>
@@ -95,7 +96,7 @@ export default function Onboarding() {
           <div className="ob-arrow--left-ext">◀</div>
           <div className="ob-body">
             <div className="ob-emoji">⚖</div>
-            <div className="ob-title">Vérifiez le classement, ne le croyez pas</div>
+            <div className="ob-title">Consultez la grille de hiérarchisation</div>
             <div className="ob-text">
               Les trois critères de hiérarchisation sont notés enjeu par enjeu :
               sensibilité du milieu, niveau de pression, et marge d'action du plan
@@ -112,7 +113,7 @@ export default function Onboarding() {
           <div className="ob-glow" />
           <div className="ob-body">
             <div className="ob-emoji">📥</div>
-            <div className="ob-title">Tout est exportable</div>
+            <div className="ob-title">Export</div>
             <div className="ob-text">
               La matrice d'incidences se télécharge en tableur manipulable avec ses
               règles de notation, les couches en GeoJSON compatible QGIS, et

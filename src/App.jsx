@@ -220,7 +220,7 @@ export default function App() {
               <h2>Instrument d&apos;évaluation</h2>
               <p className="aide">
                 Chaque croisement est qualifié selon cinq attributs. L&apos;échelle
-                est publiée ici, et non déduite du résultat.
+                d&apos;intensité est publiée avec la matrice.
               </p>
               <ul className="attributs">
                 {ATTRIBUTS.map((a) => (
@@ -236,9 +236,10 @@ export default function App() {
               <section className="bloc">
                 <h2>Matrice appliquée — {matrice.cellules.length} croisements</h2>
                 <p className="aide">
-                  Les trois enjeux croisés avec les leviers de compétence de la
-                  Métropole. Les croisements sans incidence notable ne sont pas
-                  renseignés : une matrice réelle comporte des cases vides.
+                  Les trois enjeux croisés avec huit des leviers de compétence
+                  de la Métropole. Chaque croisement porteur d&apos;une incidence
+                  notable est qualifié selon les cinq attributs et porte sa
+                  justification.
                 </p>
                 <table className="matrice">
                   <thead>
@@ -267,8 +268,9 @@ export default function App() {
             <section className="bloc">
               <h2>Flux de couverture mesurés — 2021-2024</h2>
               <p className="aide">
-                Ce que l&apos;artificialisation a consommé, par classe de couverture
-                du sol, sur les {synthese?.territoire.communes ?? 31} communes.
+                Surfaces consommées par l&apos;artificialisation, par classe de
+                couverture du sol, sur les {synthese?.territoire.communes ?? 31}
+                communes.
               </p>
               <ul className="flux">
                 {fluxPeriode.map((f, i) => (
@@ -303,9 +305,8 @@ export default function App() {
               </tbody>
             </table>
             <p className="aide">
-              C&apos;est la différence entre un tableau d&apos;indicateurs à remplir et
-              un indicateur renseigné : la valeur initiale est établie, et la
-              chaîne qui la produit est livrée avec elle.
+              La valeur initiale est établie, et la chaîne de traitement qui la
+              produit est livrée avec elle.
             </p>
           </section>
         )}
