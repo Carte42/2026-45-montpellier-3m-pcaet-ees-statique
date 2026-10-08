@@ -10,6 +10,9 @@ pipeline/travail/
 *.tif
 *.zip
 
+# Exception : les exports publies du demonstrateur, legers et attendus par la page
+!public/data/*.zip
+
 # Aucune piece d'offre dans ce depot
 *.docx
 *.xlsx
