@@ -1,0 +1,44 @@
+{
+  "territoire": {
+    "nom": "Montpellier Méditerranée Métropole",
+    "communes": 31,
+    "population": 522542,
+    "surface_ha": 43893.1
+  },
+  "artificialisation": {
+    "periodes": [
+      {
+        "etiquette": "2018-2021",
+        "artificialise_ha": 201.4,
+        "desartificialise_ha": 76.8,
+        "solde_ha": 124.6
+      },
+      {
+        "etiquette": "2021-2024",
+        "artificialise_ha": 144.4,
+        "desartificialise_ha": 66.1,
+        "solde_ha": 78.3
+      }
+    ],
+    "evolution_du_rythme_pct": -37.2
+  },
+  "vegetation": {
+    "scene": "S2A_31TEJ_20260806_1_L2A",
+    "date": "2026-08-06",
+    "nuages_pct": 0.003,
+    "ndvi_moyen_territoire": 0.429,
+    "pixels_exploitables_pct": 82.4
+  },
+  "risques": {
+    "communes_par_risque": {
+      "Mouvement de terrain": 31,
+      "Tempête": 31,
+      "Séisme": 29,
+      "Feu de forêt": 28,
+      "Inondation": 22
+    },
+    "tri": {
+      "Montpellier-Lunel-Mauguio": 19
+    }
+  }
+}

@@ -1,7 +1,7 @@
 {
-  "produit": "OCS GE Artificialisation 2.0, couches de difference",
-  "producteur": "Institut national de l'information geographique et forestiere",
-  "departement": "34 — Herault",
+  "produit": "OCS GE Artificialisation 2.0, couches de différence",
+  "producteur": "Institut national de l'information géographique et forestière",
+  "departement": "34 — Hérault",
   "periodes": [
     {
       "etiquette": "2018-2021",
@@ -13,9 +13,9 @@
     }
   ],
   "projection_de_calcul": "EPSG:2154",
-  "perimetre": "31 communes de Montpellier Mediterranee Metropole",
+  "perimetre": "31 communes de Montpellier Méditerranée Métropole",
   "unite": "hectare",
   "licence": "Licence ouverte Etalab",
-  "note": "Surfaces calculees par intersection des couches d'evolution avec les contours communaux, en Lambert-93. Ces couches ne contiennent que les polygones ayant change entre les deux millesimes. Le champ artificialisation vaut 1 pour une artificialisation et -1 pour une desartificialisation ; le solde des deux est l'indicateur de l'objectif de zero artificialisation nette.",
-  "lecture_des_flux": "L'artificialisation se definit au produit par la combinaison de la couverture et de l'usage du sol. Un flux peut donc apparaitre sans changement de classe de couverture, lorsque seul l'usage a change."
+  "note": "Surfaces calculées par intersection des couches d'évolution avec les contours communaux, en Lambert-93. Ces couches ne contiennent que les polygones ayant changé entre les deux millésimes. Le champ artificialisation vaut 1 pour une artificialisation et −1 pour une désartificialisation ; le solde des deux est l'indicateur de l'objectif de zéro artificialisation nette.",
+  "lecture_des_flux": "L'artificialisation se définit, au produit, par la combinaison de la couverture et de l'usage du sol. Un flux peut donc apparaître sans changement de classe de couverture, lorsque seul l'usage a changé."
 }

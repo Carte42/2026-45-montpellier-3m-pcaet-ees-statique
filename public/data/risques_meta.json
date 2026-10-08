@@ -1,17 +1,17 @@
 {
-  "produit": "Georisques — inventaire GASPAR, territoires a risque important d'inondation, zonage sismique",
-  "producteur": "Ministere de la Transition ecologique",
-  "perimetre": "31 communes de Montpellier Mediterranee Metropole",
+  "produit": "Géorisques — inventaire GASPAR, territoires à risque important d'inondation, zonage sismique",
+  "producteur": "Ministère de la Transition écologique",
+  "perimetre": "31 communes de Montpellier Méditerranée Métropole",
   "nb_appels": 93,
   "communes_par_risque": {
     "Mouvement de terrain": 31,
-    "Tempete": 31,
-    "Seisme": 29,
-    "Feu de foret": 28,
+    "Tempête": 31,
+    "Séisme": 29,
+    "Feu de forêt": 28,
     "Inondation": 22
   },
   "territoires_a_risque_important_inondation": {
     "Montpellier-Lunel-Mauguio": 19
   },
-  "note": "Les familles de risques sont agregees au niveau parent de la nomenclature GASPAR : un sous-type comme la crue a montee rapide est compte dans la famille Inondation."
+  "note": "Les familles de risques sont agrégées au niveau parent de la nomenclature GASPAR : un sous-type comme la crue à montée rapide est compté dans la famille Inondation."
 }

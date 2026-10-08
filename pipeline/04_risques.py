@@ -35,12 +35,12 @@ API = "https://www.georisques.gouv.fr/api/v1"
 FAMILLES = {
     "11": "Inondation",
     "12": "Mouvement de terrain",
-    "13": "Seisme",
+    "13": "Séisme",
     "14": "Avalanche",
-    "15": "Eruption volcanique",
-    "16": "Feu de foret",
+    "15": "Éruption volcanique",
+    "16": "Feu de forêt",
     "17": "Cyclone",
-    "18": "Tempete",
+    "18": "Tempête",
     "19": "Radon",
 }
 
@@ -132,7 +132,7 @@ def main() -> None:
 
     synthese = {
         "produit": "Georisques — inventaire GASPAR, territoires a risque important d'inondation, zonage sismique",
-        "producteur": "Ministere de la Transition ecologique",
+        "producteur": "Ministère de la Transition écologique",
         "perimetre": "31 communes de Montpellier Mediterranee Metropole",
         "nb_appels": n * 3,
         "communes_par_risque": dict(sorted(compteur.items(), key=lambda kv: -kv[1])),

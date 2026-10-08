@@ -1,11 +1,11 @@
 {
   "produit": "Sentinel-2 niveau 2A, programme Copernicus",
-  "producteur": "Agence spatiale europeenne et Commission europeenne",
+  "producteur": "Agence spatiale européenne et Commission européenne",
   "scene": "S2A_31TEJ_20260806_1_L2A",
   "date": "2026-08-06",
   "couverture_nuageuse_scene_pct": 0.003,
   "acces": "catalogue STAC public, sans authentification",
-  "indice": "Indice de vegetation par difference normalisee, bandes rouge et proche infrarouge",
+  "indice": "Indice de végétation par différence normalisée, bandes rouge et proche infrarouge",
   "resolution_de_calcul_m": 20,
   "seuil_vegetation_faible": 0.2,
   "classes_de_classification_ecartees": [
@@ -19,6 +19,6 @@
     11
   ],
   "pixels_exploitables_pct": 82.4,
-  "perimetre": "31 communes de Montpellier Mediterranee Metropole",
-  "note_vulnerabilite": "L'indice de vulnerabilite croise le rang de part de vegetation faible et le rang de densite de population. Il hierarchise les communes entre elles et n'a pas de valeur absolue. La densite communale est un substitut a la repartition fine de la population, qui releverait d'un carroyage."
+  "perimetre": "31 communes de Montpellier Méditerranée Métropole",
+  "note_vulnerabilite": "L'indice de vulnérabilité croise le rang de part de végétation faible et le rang de densité de population. Il hiérarchise les communes entre elles et n'a pas de valeur absolue. La densité communale est un substitut à la répartition fine de la population, qui relèverait d'un carroyage."
 }

@@ -83,20 +83,20 @@ def charger_communes() -> gpd.GeoDataFrame:
 # Nomenclature de couverture du sol de l'OCS GE, niveaux utiles aux flux.
 # Source : arrete du 4 aout 2016 et specifications du produit.
 COUVERTURE = {
-    "CS1.1.1.1": "Zones baties",
-    "CS1.1.1.2": "Zones non baties, revetues",
-    "CS1.1.2.1": "Zones impermeables, autres",
-    "CS1.1.2.2": "Zones impermeables, autres",
-    "CS1.2.1": "Sols nus anthropises",
-    "CS1.2.2": "Sols nus anthropises",
+    "CS1.1.1.1": "Zones bâties",
+    "CS1.1.1.2": "Zones non bâties, revêtues",
+    "CS1.1.2.1": "Zones imperméables, autres",
+    "CS1.1.2.2": "Zones imperméables, autres",
+    "CS1.2.1": "Sols nus anthropisés",
+    "CS1.2.2": "Sols nus anthropisés",
     "CS2.1.1.1": "Formations ligneuses hautes",
     "CS2.1.1.2": "Formations ligneuses basses",
     "CS2.1.1.3": "Formations ligneuses, autres",
-    "CS2.1.2": "Formations herbacees",
-    "CS2.1.3": "Autre vegetation",
+    "CS2.1.2": "Formations herbacées",
+    "CS2.1.3": "Autre végétation",
     "CS2.2.1": "Sols nus naturels",
     "CS2.2.2": "Surfaces en eau",
-    "CS2.2.3": "Neve et glace",
+    "CS2.2.3": "Névé et glace",
 }
 
 
@@ -107,7 +107,7 @@ def libelle_cs(code: str) -> str:
         if code in COUVERTURE:
             return COUVERTURE[code]
         code = code.rsplit(".", 1)[0] if "." in code else ""
-    return "Classe non renseignee"
+    return "Classe non renseignée"
 
 
 def analyser_periode(
@@ -220,8 +220,8 @@ def main() -> None:
 
     # ── Metadonnees, pour le volet « sources » du demonstrateur ──────────────
     meta = {
-        "produit": "OCS GE Artificialisation 2.0, couches de difference",
-        "producteur": "Institut national de l'information geographique et forestiere",
+        "produit": "OCS GE Artificialisation 2.0, couches de différence",
+        "producteur": "Institut national de l'information géographique et forestière",
         "departement": "34 — Herault",
         "periodes": [{"etiquette": e, "fichier": n} for e, n in PERIODES if e in etiquettes],
         "projection_de_calcul": LAMBERT93,

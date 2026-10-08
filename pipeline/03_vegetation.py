@@ -161,14 +161,14 @@ def main() -> None:
 
     meta = {
         "produit": "Sentinel-2 niveau 2A, programme Copernicus",
-        "producteur": "Agence spatiale europeenne et Commission europeenne",
+        "producteur": "Agence spatiale européenne et Commission européenne",
         "scene": scene["id"],
         "date": scene["properties"]["datetime"][:10],
         "couverture_nuageuse_scene_pct": round(
             float(scene["properties"].get("eo:cloud_cover", 0)), 3
         ),
         "acces": "catalogue STAC public, sans authentification",
-        "indice": "Indice de vegetation par difference normalisee, bandes rouge et proche infrarouge",
+        "indice": "Indice de végétation par différence normalisée, bandes rouge et proche infrarouge",
         "resolution_de_calcul_m": RESOLUTION_M,
         "seuil_vegetation_faible": SEUIL_FAIBLE,
         "classes_de_classification_ecartees": sorted(SCL_EXCLUES),
